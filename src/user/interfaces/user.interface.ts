@@ -1,7 +1,7 @@
 interface UserInterface {
     id: number;
     email: string;
-    hashedPassword: string;
+    password: string;
     firstName: string;
     lastName: string;
     createdAt: Date;
