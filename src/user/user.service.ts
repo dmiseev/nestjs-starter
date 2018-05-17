@@ -12,11 +12,20 @@ export class UserService {
     constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) {
     }
 
+    /**
+     * @return {Promise<[UserInterface[] , number]>}
+     */
     async findAll(): Promise<[UserInterface[], number]> {
+
         return await this.userRepository.findAndCount();
     }
 
-    async findOne(id): Promise<UserInterface> {
+    /**
+     * @param {number} id
+     *
+     * @return {Promise<UserInterface>}
+     */
+    async findOne(id: number): Promise<UserInterface> {
 
         const user = await this.userRepository.findOne(id);
 
@@ -27,6 +36,11 @@ export class UserService {
         return user;
     }
 
+    /**
+     * @param {CreateUserDto} createUserDto
+     *
+     * @return {Promise<UserInterface>}
+     */
     async create(createUserDto: CreateUserDto): Promise<UserInterface> {
 
         const user = User.register(
@@ -39,7 +53,13 @@ export class UserService {
         return await this.userRepository.save(user);
     }
 
-    async update(id, updateUserDto: UpdateUserDto): Promise<UserInterface> {
+    /**
+     * @param {number} id
+     * @param {UpdateUserDto} updateUserDto
+     *
+     * @return {Promise<UserInterface>}
+     */
+    async update(id: number, updateUserDto: UpdateUserDto): Promise<UserInterface> {
 
         const user = await this.userRepository.findOne(id);
 
@@ -53,7 +73,11 @@ export class UserService {
         return await this.userRepository.save(user);
     }
 
-    async remove(id) {
+    /**
+     * @param {number} id
+     * @return {Promise<void>}
+     */
+    async remove(id: number) {
 
         const user = await this.userRepository.findOne(id);
 

@@ -13,6 +13,7 @@
       "single"
     ],
     "indent": false,
+    "no-trailing-whitespace": false,
     "member-access": [
       false
     ],
